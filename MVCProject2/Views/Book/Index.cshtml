@@ -1,0 +1,38 @@
+﻿@model MVCProject2.ViewModel.BookViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Book List @Html.ActionLink("Add", "New", "Book", null, new { @class = "btn btn-primary" })</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.BookTitle)</th>
+            <th>@Html.DisplayNameFor(m => m.Author)</th>
+            <th>@Html.DisplayNameFor(m => m.Company)</th>
+            <th>@Html.DisplayNameFor(m => m.PublishDate)</th>
+            <th>@Html.DisplayNameFor(m => m.GenreId)</th>
+            <th>@Html.DisplayNameFor(m => m.Price)</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.BookTitle)</td>
+                <td>@Html.DisplayFor(m => item.Author)</td>
+                <td>@Html.DisplayFor(m => item.Company)</td>
+                <td>@Html.DisplayFor(m => item.PublishDate)</td>
+                <td>@Html.DisplayFor(m => item.Genre.GenreType)</td>
+                <td>@Html.DisplayFor(m => item.Price)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Book", new { @class = "btn btn-warning", Href="/Book/Edit/" + item.Id })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Book", new{ @class="btn btn-danger", Href="/Book/Delete/" + item.Id })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
